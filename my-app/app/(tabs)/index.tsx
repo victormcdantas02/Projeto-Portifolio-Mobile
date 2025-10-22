@@ -1,98 +1,227 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { StyleSheet, ScrollView, View, Text, Image, TouchableOpacity, Linking } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  
+  const openURL = (url: string) => {
+    Linking.openURL(url);
+  };
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        
+        <View style={styles.heroSection}>
+          <Text style={styles.heroTitle}>Boas vindas ao meu portfólio!</Text>
+          <Text style={styles.heroSubtitle}>Me chamo Victor Dantas</Text>
+        </View>
+
+        {/* About Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Sobre Mim</Text>
+          <View style={styles.aboutContent}>
+            <View style={styles.photoContainer}>
+              <Image 
+                source={require('../../assets/images/victor.jpg')} // ajuste o caminho
+                style={styles.photo}
+              />
+            </View>
+            <View style={styles.aboutText}>
+              <Text style={styles.paragraph}>
+                Atualmente tenho 23 anos, sou de Teresina-PI, curso Ciência da 
+                Computação desde 2022 e gosto de várias coisas e falar sobre elas.
+              </Text>
+              <Text style={styles.paragraph}>
+                Gosto muito de filmes, jogos, quadrinhos e animações. Tenho sonho 
+                de conhecer diferentes países e ajudar pessoas. Profissionalmente 
+                estou aberto a qualquer tipo de experiência.
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Projetos</Text>
+          
+          <View style={styles.projectCard}>
+            <Text style={styles.projectTitle}>Projeto Estrutura de Dados</Text>
+            <Text style={styles.projectDescription}>
+              Trabalho que consiste em uma aplicação que utiliza listas encadeadas 
+              para gerenciar um sistema que engloba uma clínica médica, eventos e 
+              um restaurante, armazenando os dados atribuídos ao longo do programa.
+            </Text>
+            <TouchableOpacity 
+              style={styles.linkButton}
+              onPress={() => openURL('https://github.com/victormcdantas02/Projeto-ED1')}
+            >
+              <Text style={styles.linkButtonText}>Ver Código</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Projeto 2 */}
+          <View style={styles.projectCard}>
+            <Text style={styles.projectTitle}>Projeto Banco de Dados</Text>
+            <Text style={styles.projectDescription}>
+              Projeto acadêmico de banco de dados simulando um parque de diversões 
+              com gerenciamento de visitantes, brinquedos e vendas de ingressos.
+            </Text>
+            <TouchableOpacity 
+              style={styles.linkButton}
+              onPress={() => openURL('https://github.com/victormcdantas02/Projeto-Banco')}
+            >
+              <Text style={styles.linkButtonText}>Ver Código</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Contact Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Meus Contatos</Text>
+          
+          <TouchableOpacity 
+            style={styles.contactItem}
+            onPress={() => openURL('mailto:victormcdantas@gmail.com')}
+          >
+            <Text style={styles.contactEmoji}>📧</Text>
+            <Text style={styles.contactText}>victormcdantas@gmail.com</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.contactItem}
+            onPress={() => openURL('https://www.linkedin.com/in/victormcdantas/')}
+          >
+            <Text style={styles.contactEmoji}>💼</Text>
+            <Text style={styles.contactText}>LinkedIn</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            style={styles.contactItem}
+            onPress={() => openURL('https://github.com/victormcdantas02')}
+          >
+            <Text style={styles.contactEmoji}>🐱</Text>
+            <Text style={styles.contactText}>GitHub</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={{ height: 30 }} />
+
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  
+  heroSection: {
+    padding: 40,
+    backgroundColor: '#4A90E2',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 250,
+  },
+  heroTitle: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  heroSubtitle: {
+    fontSize: 20,
+    color: '#fff',
+    textAlign: 'center',
+  },
+
+  section: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e0e0e0',
+  },
+  sectionTitle: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: '#333',
+  },
+
+  aboutContent: {
+    alignItems: 'center',
+  },
+  photoContainer: {
+    marginBottom: 20,
+  },
+  photo: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    borderWidth: 3,
+    borderColor: '#4A90E2',
+  },
+  aboutText: {
+    width: '100%',
+  },
+  paragraph: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#555',
+    marginBottom: 15,
+    textAlign: 'justify',
+  },
+
+  projectCard: {
+    backgroundColor: '#f5f5f5',
+    padding: 20,
+    borderRadius: 12,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  projectTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+  },
+  projectDescription: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#666',
+    marginBottom: 15,
+  },
+  linkButton: {
+    backgroundColor: '#4A90E2',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  linkButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+
+  contactItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    backgroundColor: '#f9f9f9',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 12,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  contactEmoji: {
+    fontSize: 24,
+    marginRight: 15,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  contactText: {
+    fontSize: 16,
+    color: '#4A90E2',
+    fontWeight: '500',
   },
 });
