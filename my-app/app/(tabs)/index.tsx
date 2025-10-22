@@ -16,13 +16,12 @@ export default function HomeScreen() {
           <Text style={styles.heroSubtitle}>Me chamo Victor Dantas</Text>
         </View>
 
-        {/* About Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Sobre Mim</Text>
           <View style={styles.aboutContent}>
             <View style={styles.photoContainer}>
               <Image 
-                source={require('../../assets/images/victor.jpg')} // ajuste o caminho
+                source={require('../../assets/images/victor.jpg')}
                 style={styles.photo}
               />
             </View>
@@ -58,7 +57,6 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </View>
 
-          {/* Projeto 2 */}
           <View style={styles.projectCard}>
             <Text style={styles.projectTitle}>Projeto Banco de Dados</Text>
             <Text style={styles.projectDescription}>
@@ -74,7 +72,6 @@ export default function HomeScreen() {
           </View>
         </View>
 
-        {/* Contact Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Meus Contatos</Text>
           
