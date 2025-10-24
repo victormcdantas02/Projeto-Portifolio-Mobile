@@ -22,7 +22,6 @@ export default function HomeScreen() {
             <View style={styles.photoContainer}>
               <Image 
                 source={require('../../assets/images/victor.jpg')}
-                style={styles.photo}
               />
             </View>
             <View style={styles.aboutText}>
