@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ForcaSVG from '../../components/jogo/ForcaSVG';
 
 export default function JogoScreen() {
   
@@ -94,17 +95,20 @@ export default function JogoScreen() {
 
         <View style={styles.content}>
           
-          <View style={styles.forcaPlaceholder}>
-            <Text style={styles.errosText}>
-              Erros: {letrasErradas.length} / 6
-            </Text>
-          </View>
+          {/* Desenho da Forca com SVG */}
+          <ForcaSVG 
+            erros={letrasErradas.length} 
+            jogoTerminado={jogoTerminado}
+            jogadorVenceu={jogadorVenceu}
+          />
 
+          {/* Palavra com underlines */}
           <View style={styles.palavraContainer}>
             <Text style={styles.palavraLabel}>Palavra:</Text>
             <Text style={styles.palavraTexto}>{exibirPalavra()}</Text>
           </View>
 
+          {/* Informações do jogo */}
           <View style={styles.infoContainer}>
             <Text style={styles.infoText}>
               Tentativas restantes: {tentativasRestantes}
@@ -116,6 +120,7 @@ export default function JogoScreen() {
             )}
           </View>
 
+          {/* Letras tentadas */}
           {(letrasAdivinhadas.length > 0 || letrasErradas.length > 0) && (
             <View style={styles.letrasTentadas}>
               <Text style={styles.letrasTentadasTitle}>Letras tentadas:</Text>
@@ -136,6 +141,7 @@ export default function JogoScreen() {
             </View>
           )}
 
+          {/* Input de letra */}
           {!jogoTerminado && (
             <View style={styles.inputContainer}>
               <TextInput
@@ -153,6 +159,7 @@ export default function JogoScreen() {
             </View>
           )}
 
+          {/* Mensagem de fim de jogo */}
           {jogoTerminado && (
             <View style={[styles.mensagem, jogadorVenceu ? styles.vitoria : styles.derrota]}>
               {jogadorVenceu ? (
@@ -173,6 +180,7 @@ export default function JogoScreen() {
             </View>
           )}
 
+          {/* Botão novo jogo */}
           <TouchableOpacity style={styles.btnReiniciar} onPress={iniciarNovoJogo}>
             <Text style={styles.btnReiniciarText}>🔄 Novo Jogo</Text>
           </TouchableOpacity>
@@ -209,19 +217,6 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 20,
-  },
-  forcaPlaceholder: {
-    backgroundColor: '#f1f5f9',
-    height: 200,
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  errosText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1e293b',
   },
   palavraContainer: {
     backgroundColor: '#f1f5f9',
