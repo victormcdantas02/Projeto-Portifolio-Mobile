@@ -1,7 +1,8 @@
+import ForcaSVG from '@/components/jogo/ForcaSVG';
 import { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ForcaSVG from '../../components/jogo/ForcaSVG';
+
 
 export default function JogoScreen() {
   
