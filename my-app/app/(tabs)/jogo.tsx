@@ -96,20 +96,17 @@ export default function JogoScreen() {
 
         <View style={styles.content}>
           
-          {/* Desenho da Forca com SVG */}
           <ForcaSVG 
             erros={letrasErradas.length} 
             jogoTerminado={jogoTerminado}
             jogadorVenceu={jogadorVenceu}
           />
 
-          {/* Palavra com underlines */}
           <View style={styles.palavraContainer}>
             <Text style={styles.palavraLabel}>Palavra:</Text>
             <Text style={styles.palavraTexto}>{exibirPalavra()}</Text>
           </View>
 
-          {/* Informações do jogo */}
           <View style={styles.infoContainer}>
             <Text style={styles.infoText}>
               Tentativas restantes: {tentativasRestantes}
@@ -121,7 +118,6 @@ export default function JogoScreen() {
             )}
           </View>
 
-          {/* Letras tentadas */}
           {(letrasAdivinhadas.length > 0 || letrasErradas.length > 0) && (
             <View style={styles.letrasTentadas}>
               <Text style={styles.letrasTentadasTitle}>Letras tentadas:</Text>
@@ -142,7 +138,6 @@ export default function JogoScreen() {
             </View>
           )}
 
-          {/* Input de letra */}
           {!jogoTerminado && (
             <View style={styles.inputContainer}>
               <TextInput
@@ -160,7 +155,6 @@ export default function JogoScreen() {
             </View>
           )}
 
-          {/* Mensagem de fim de jogo */}
           {jogoTerminado && (
             <View style={[styles.mensagem, jogadorVenceu ? styles.vitoria : styles.derrota]}>
               {jogadorVenceu ? (
@@ -181,7 +175,6 @@ export default function JogoScreen() {
             </View>
           )}
 
-          {/* Botão novo jogo */}
           <TouchableOpacity style={styles.btnReiniciar} onPress={iniciarNovoJogo}>
             <Text style={styles.btnReiniciarText}>🔄 Novo Jogo</Text>
           </TouchableOpacity>
@@ -198,7 +191,7 @@ export default function JogoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffffed',
   },
   header: {
     backgroundColor: '#2563eb',
@@ -239,7 +232,7 @@ const styles = StyleSheet.create({
     letterSpacing: 8,
   },
   infoContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#f8fafc',
     padding: 15,
     borderRadius: 10,
     borderWidth: 1,

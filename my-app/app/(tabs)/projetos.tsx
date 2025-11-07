@@ -55,7 +55,7 @@ export default function ProjetosScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffffed',
   },
   section: {
     padding: 20,

@@ -50,7 +50,7 @@ export default function SobreScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffffed',
   },
   section: {
     padding: 20,
