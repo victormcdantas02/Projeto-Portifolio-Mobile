@@ -40,6 +40,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="academico"
+        options={{
+          title: 'Acadêmico',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="school" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profissional"
+        options={{
+          title: 'Profissional',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="business" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="projetos"
         options={{
           title: 'Projetos',
