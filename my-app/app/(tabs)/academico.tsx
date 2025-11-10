@@ -25,12 +25,12 @@ export default function AcademicoScreen() {
           <Text style={styles.sectionTitle}>Idiomas</Text>
           
           <View style={styles.card}>
-            <Text style={styles.idioma}>🇧🇷 Português</Text>
+            <Text style={styles.idioma}>Português</Text>
             <Text style={styles.nivel}>Nativo</Text>
           </View>
 
           <View style={styles.card}>
-            <Text style={styles.idioma}>🇺🇸 Inglês</Text>
+            <Text style={styles.idioma}>Inglês</Text>
             <Text style={styles.nivel}>Intermediário</Text>
           </View>
 
