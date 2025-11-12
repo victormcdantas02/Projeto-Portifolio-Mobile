@@ -1,8 +1,8 @@
 import ForcaSVG from '@/components/jogo/ForcaSVG';
+import TecladoVirtual from '@/components/jogo/TecladoVirtual';
 import { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView, View, Text, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 
 export default function JogoScreen() {
   
@@ -18,7 +18,6 @@ export default function JogoScreen() {
   const [letrasAdivinhadas, setLetrasAdivinhadas] = useState<string[]>([]);
   const [letrasErradas, setLetrasErradas] = useState<string[]>([]);
   const [tentativasRestantes, setTentativasRestantes] = useState(6);
-  const [inputLetra, setInputLetra] = useState('');
   const [jogoTerminado, setJogoTerminado] = useState(false);
   const [jogadorVenceu, setJogadorVenceu] = useState(false);
 
@@ -28,19 +27,15 @@ export default function JogoScreen() {
     setLetrasAdivinhadas([]);
     setLetrasErradas([]);
     setTentativasRestantes(6);
-    setInputLetra('');
     setJogoTerminado(false);
     setJogadorVenceu(false);
   };
 
-  const tentarLetra = () => {
-    if (!inputLetra || inputLetra.length !== 1 || jogoTerminado) return;
-
-    const letra = inputLetra.toUpperCase();
+  const tentarLetra = (letra: string) => {
+    if (jogoTerminado) return;
 
     if (letrasAdivinhadas.includes(letra) || letrasErradas.includes(letra)) {
       Alert.alert('Atenção!', 'Você já tentou essa letra!');
-      setInputLetra('');
       return;
     }
 
@@ -50,8 +45,6 @@ export default function JogoScreen() {
       setLetrasErradas([...letrasErradas, letra]);
       setTentativasRestantes(tentativasRestantes - 1);
     }
-
-    setInputLetra('');
   };
 
   const exibirPalavra = () => {
@@ -138,21 +131,13 @@ export default function JogoScreen() {
             </View>
           )}
 
+          {/* Teclado Virtual */}
           {!jogoTerminado && (
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                value={inputLetra}
-                onChangeText={(text) => setInputLetra(text.replace(/[^a-zA-Z]/g, ''))}
-                maxLength={1}
-                placeholder="Digite uma letra"
-                autoCapitalize="characters"
-                onSubmitEditing={tentarLetra}
-              />
-              <TouchableOpacity style={styles.btnTentar} onPress={tentarLetra}>
-                <Text style={styles.btnText}>Tentar</Text>
-              </TouchableOpacity>
-            </View>
+            <TecladoVirtual
+              onLetraPress={tentarLetra}
+              letrasUsadas={[...letrasAdivinhadas, ...letrasErradas]}
+              jogoTerminado={jogoTerminado}
+            />
           )}
 
           {jogoTerminado && (
@@ -273,32 +258,6 @@ const styles = StyleSheet.create({
   letrasValor: {
     fontSize: 14,
     color: '#475569',
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    gap: 10,
-    marginBottom: 20,
-  },
-  input: {
-    flex: 1,
-    backgroundColor: '#f1f5f9',
-    padding: 15,
-    borderRadius: 10,
-    fontSize: 18,
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-  },
-  btnTentar: {
-    backgroundColor: '#2563eb',
-    paddingHorizontal: 30,
-    borderRadius: 10,
-    justifyContent: 'center',
-  },
-  btnText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
   },
   mensagem: {
     padding: 20,
