@@ -49,7 +49,7 @@ export default function TecladoVirtual({ onLetraPress, letrasUsadas, jogoTermina
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
   fileira: {
     flexDirection: 'row',
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
   },
   tecla: {
     backgroundColor: '#132e7eff',
-    width: 36,
-    height: 44,
+    width: 26,
+    height: 34,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
