@@ -8,12 +8,12 @@ interface TecladoVirtualProps {
 
 export default function TecladoVirtual({ onLetraPress, letrasUsadas, jogoTerminado }: TecladoVirtualProps) {
   
-  const alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const alfabeto = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split('');
 
   const fileiras = [
-    alfabeto.slice(0, 9),   // A-I
-    alfabeto.slice(9, 18),  // J-R
-    alfabeto.slice(18, 26), // S-Z
+    alfabeto.slice(0, 10),
+    alfabeto.slice(10, 19),
+    alfabeto.slice(19, 26), 
   ];
 
   return (
