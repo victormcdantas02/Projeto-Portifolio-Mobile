@@ -14,7 +14,7 @@ export default function AcademicoScreen() {
             <Text style={styles.instituicao}>UNICAP</Text>
             <Text style={styles.periodo}>2022 - Presente</Text>
             <Text style={styles.descricao}>
-              Cursando graduação em Ciência da Computação
+              Graduação em Ciência da Computação
             </Text>
           </View>
 
