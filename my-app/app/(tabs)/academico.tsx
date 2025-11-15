@@ -11,7 +11,7 @@ export default function AcademicoScreen() {
           
           <View style={styles.card}>
             <Text style={styles.curso}>Ciência da Computação</Text>
-            <Text style={styles.instituicao}>UNICAP</Text>
+            <Text style={styles.instituicao}>Universidade Católica de Penambuco</Text>
             <Text style={styles.periodo}>2022 - Presente</Text>
             <Text style={styles.descricao}>
               Graduação em Ciência da Computação
